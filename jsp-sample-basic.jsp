@@ -1,7 +1,7 @@
 <%@ page
-	language="java"
-	import="java.sql.*"
-	contentType="text/html;charset=utf-8" %>
+    language="java"
+    import="java.sql.*"
+    contentType="text/html;charset=utf-8" %>
 <%!
 // *********************************************************
 // ローカル関数
@@ -25,24 +25,19 @@ String title = "MySQL";
 
 <style>
 #main {
-	padding: 30px;
-	font-size: 24px;
+    font-size: 24px;
 }
 
-form {
-	margin-bottom: 20px;
-}
-
-.btn {
-	vertical-align: top;
+#mysql {
+    white-space: pre;
 }
 </style>
+
 </head>
 <body>
 <div id="main">
 <div class="alert alert-primary"><%= title %></div>
-<div id="mysql" style="white-space: pre;">
-
+<div id="mysql" class="m-5">
 <% 
 Connection conn = null;
 Statement stmt = null;
@@ -52,38 +47,39 @@ Class.forName("com.mysql.jdbc.Driver");
 
 try {
 
-	conn = DriverManager.getConnection(
-		"jdbc:mysql://localhost/lightbox?user=root&password=&characterEncoding=UTF-8"
-	);
+    conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost/lightbox?user=root&password=&characterEncoding=UTF-8"
+    );
 
-	// ステートメント
-	stmt = conn.createStatement();
-	// SQL 実行
-	rs = stmt.executeQuery("select * from 社員マスタ");
+    // ステートメント
+    stmt = conn.createStatement();
+    // SQL 実行
+    rs = stmt.executeQuery("select * from 社員マスタ");
 
-	while( rs.next() ) {
+    while( rs.next() ) {
                 
-		out.println(rs.getString("社員コード"));
-		out.println(rs.getString("氏名"));
-		out.println(rs.getString("フリガナ"));
-		out.println(rs.getString("所属"));
-		out.println(rs.getString("性別"));
-		out.println(rs.getString("作成日"));
-		out.println(rs.getString("更新日"));
-		out.println(rs.getString("給与"));
-		out.println(rs.getString("手当"));
-		out.println(rs.getString("管理者"));
-		out.println(rs.getString("生年月日"));
+        out.println(rs.getString("社員コード"));
+        out.println(rs.getString("氏名"));
+        out.println(rs.getString("フリガナ"));
+        out.println(rs.getString("所属"));
+        out.println(rs.getString("性別"));
+        out.println(rs.getString("作成日"));
+        out.println(rs.getString("更新日"));
+        out.println(rs.getString("給与"));
+        out.println(rs.getString("手当"));
+        out.println(rs.getString("管理者"));
+        out.println(rs.getString("生年月日"));
 
-	}
+        out.print("<hr>");
+    }
 
-	rs.close();
-	stmt.close();
-	conn.close();
+    rs.close();
+    stmt.close();
+    conn.close();
 
 }
 catch (Exception e) {
-	out.println( e.getMessage() );
+    out.println( e.getMessage() );
 }
 
 %>
