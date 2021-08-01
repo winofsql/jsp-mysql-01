@@ -13,3 +13,17 @@
 	useNaming="false">
 </Context>
 ```
+
+```java
+Class.forName("com.mysql.jdbc.Driver");
+try {
+    conn = DriverManager.getConnection(
+        "jdbc:mysql://localhost/lightbox?user=root&password=&characterEncoding=UTF-8"
+    );
+
+    conn.close();
+}
+catch (Exception e) {
+    out.println( e.getMessage() );
+}
+```
